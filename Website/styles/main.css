@@ -1,0 +1,66 @@
+body{
+    font-family: Lato, 'Arial', verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #444444;
+}
+
+.header, .main, .foot{
+  	padding: 0.2em 1em;
+}
+
+.header{
+    background-color: #B1B1B1;
+}
+
+.foot{
+    display:flex;
+    justify-content: center;
+}
+
+.section1, .section2, .section3, .section4 {
+    width: 90vw;
+    max-width: 750px;
+}
+
+button{
+    width: 200px;
+    color: #444444;
+    background-color: #B1B1B1;
+}
+
+@media only screen and (max-width: 768px){
+	.main{
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1280px){
+	.main{
+	  display: grid;
+	  grid-template-columns: 1fr 1fr;
+	}
+    
+    .section1, .section2, .section3, .section4 {
+        width: 45vw;
+        max-width: 500px;
+    }
+}
+
+@media only screen and (min-width: 1281px){
+	.main{
+	  	display: grid;
+	  	grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+	
+    .section1, .section2, .section3, .section4 {
+        width: 80vw;
+        max-width: 350px;
+    }
+}
