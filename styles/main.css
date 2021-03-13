@@ -1,6 +1,6 @@
 @font-face {
-    font-family: digital;
-    src: url(../fonts/digital-7/ttf);
+  font-family: clockFont;
+  src: url(../fonts/digital7.ttf) format('truetype');
 }
 
 body{
@@ -10,8 +10,8 @@ body{
 
 #clock {
     text-align: center;
-    font-size: 48px;
-    font-family: digital7;
+    font-size: 72px;
+    font-family: clockFont;
     color: #7e7e7e;
     margin-top: 300px;
     opacity: 0;
@@ -19,8 +19,8 @@ body{
 
 #date {
     text-align: center;
-    font-size: 28px;
-    font-family: digital7;
+    font-size: 48px;
+    font-family: clockFont;
     color: #7e7e7e;
     opacity: 0;
 }
@@ -36,6 +36,10 @@ footer {
     margin-top: 150px;;
     display: flex;
     justify-content: flex-end;
+}
+
+#switch{
+    font-family: Lato, Arial;
 }
 
 #image {
@@ -58,11 +62,12 @@ figure{
 
 @media only screen and (min-width: 769px) and (max-width: 1280px){
     #clock {
-        font-size: 72px;
+        font-size: 112px;
+        margin-top: 150px;
     }
     
     #date {
-        font-size: 48px;
+        font-size: 72px;
     }
     
     footer{
@@ -72,15 +77,20 @@ figure{
 
 @media only screen and (min-width: 1281px){
     #clock {
-        font-size: 72px;
+        font-size: 112px;
+        margin-top: 150px;
     }
     
     #date {
-        font-size: 48px;
+        font-size: 72px;
     }
     
     footer {
         justify-content: center;
         margin-top: 0px;
+    }
+    
+    #switch{
+        font-size: 20px;
     }
 }
