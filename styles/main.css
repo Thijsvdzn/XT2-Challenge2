@@ -1,66 +1,86 @@
+@font-face {
+    font-family: digital;
+    src: url(../fonts/digital-7/ttf);
+}
+
 body{
-    font-family: Lato, 'Arial', verdana, sans-serif;
     display: flex;
     flex-direction: column;
 }
 
-h1 {
+#clock {
     text-align: center;
-    font-size: 36px;
-    color: #444444;
+    font-size: 48px;
+    font-family: digital7;
+    color: #7e7e7e;
+    margin-top: 300px;
+    opacity: 0;
 }
 
-.header, .main, .foot{
-  	padding: 0.2em 1em;
+#date {
+    text-align: center;
+    font-size: 28px;
+    font-family: digital7;
+    color: #7e7e7e;
+    opacity: 0;
 }
 
-.header{
-    background-color: #B1B1B1;
+#switch {
+    background-color: #7e7e7e;
+    color: #ffffffff;
+    font-size: 14px;
+    opacity: 0;
 }
 
-.foot{
-    display:flex;
-    justify-content: center;
+footer {
+    margin-top: 150px;;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.section1, .section2, .section3, .section4 {
-    width: 90vw;
-    max-width: 750px;
+#image {
+    position: absolute;
+    opacity: 0; 
 }
 
-button{
-    width: 200px;
-    color: #444444;
-    background-color: #B1B1B1;
+figure{
+    display: flex;
+}
+
+#clock.fadeIn, #date.fadeIn, #switch.fadeIn, #image.fadeIn{
+    transition-duration: 3s;
+    opacity: 1;
 }
 
 @media only screen and (max-width: 768px){
-	.main{
-		display: grid;
-		grid-template-columns: 1fr;
-	}
+
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1280px){
-	.main{
-	  display: grid;
-	  grid-template-columns: 1fr 1fr;
-	}
+    #clock {
+        font-size: 72px;
+    }
     
-    .section1, .section2, .section3, .section4 {
-        width: 45vw;
-        max-width: 500px;
+    #date {
+        font-size: 48px;
+    }
+    
+    footer{
+        margin-top: 75px;
     }
 }
 
 @media only screen and (min-width: 1281px){
-	.main{
-	  	display: grid;
-	  	grid-template-columns: 1fr 1fr 1fr 1fr;
-	}
-	
-    .section1, .section2, .section3, .section4 {
-        width: 80vw;
-        max-width: 350px;
+    #clock {
+        font-size: 72px;
+    }
+    
+    #date {
+        font-size: 48px;
+    }
+    
+    footer {
+        justify-content: center;
+        margin-top: 0px;
     }
 }

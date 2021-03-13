@@ -1,253 +1,95 @@
-//Making a global variable used for calculating the next week
-var i = 1;
+var updateClock = setInterval(clock, 1000);
+var checkBackground = setInterval(updateBackground, 1000);
+var today = new Date()
+i = 1;
 
-//variable to get a random number between 1 and 100
-var randomSpeed = Math.floor(Math.random() * 1000);
+function clock(){
+    if(document.getElementById('switch').innerHTML == "Switch to 12h notation"){
+        var today = new Date();
+    
+        document.getElementById('clock').innerHTML = today.getHours() + ":" + addZero(today.getMinutes()) + ":" + addZero(today.getSeconds());
 
-//All needed array's for the charts
-var food = [100000];
-var water = [100000];
-var distance = [0];
-var speed = [randomSpeed, 1000, 0];
-var weeks = ['Week 1'];
-
-//Giving all charts a variable
-var foodChart = document.getElementById('foodChart').getContext('2d');
-var waterChart = document.getElementById('waterChart').getContext('2d');
-var distanceTravelledChart = document.getElementById('distanceTravelledChart').getContext('2d');
-var speedChart = document.getElementById('speedChart').getContext('2d');
-
-//Making the first instance of all the charts
-//These are initiated here so the page doesn't start out empty
-//Food Chart
-var foodChartData = new Chart(foodChart, {
-type:'line', 
-data:{
-    labels: weeks,
-        datasets:[{
-            label:'Food',
-            data: food,
-            borderColor: '#B1B1B1'
-        }]
-    },
-    options:{
-        title:{
-            display:true,
-            text:'Food',
-            fontSize:24,
-            fontColor: '#E1676B'
-        },
-        legend:{
-            display:false,
-        }
-    }
-});
-
-//Water Chart
-var waterChartData = new Chart(waterChart, {
-    type:'line', 
-    data:{
-        labels: weeks,
-        datasets:[{
-            label:'Water',
-            data: water,
-            borderColor: '#B1B1B1'
-        }]
-    },
-    options:{
-        title:{
-            display:true,
-            text:'Water',
-            fontSize:24,
-            fontColor: '#E1676B'
-        },
-        legend:{
-            display:false,
+        function addZero(number){
+            if(number < 10){
+                number = "0" + number;
             }
-    }
-});
-
-//Distance Travelled Chart
-var distanceChartData = new Chart(distanceTravelledChart, {
-    type:'line', 
-    data:{
-        labels: weeks,
-        datasets:[{
-            label:'Distance',
-            data: distance,
-            borderColor: '#B1B1B1'
-        }]
-    },
-    options:{
-        title:{
-            display:true,
-            text:'Distance Travelled',
-            fontSize:24,
-            fontColor: '#E1676B'
-        },
-        legend:{
-            display:false,
+            return number;
         }
-    }
-});
+        
+    } else {
+        var today = new Date();
     
-//Speed Chart
-var speedData = new Chart(speedChart, {
-    type:'horizontalBar', 
-    data:{
-        labels: ['speed'],
-        datasets:[{
-            label:'Speed',
-            data: speed,
-            borderColor: '#B1B1B1'
-        }]
-    },
-    options:{
-        title:{
-            display:true,
-            text:'Current Speed in km/h',
-            fontSize:24,
-            fontColor: '#E1676B'
-        },
-        legend:{
-            display:false,
-        },
-        scales:{
-            xAxes: [{
-                stacked:true
-            }],
-            yAxes: [{
-                stacked:true
-            }]
-        }
-    }
-});   
+        document.getElementById('clock').innerHTML = amOrPm(today.getHours()) + ":" + addZero(today.getMinutes()) + ":" + addZero(today.getSeconds()) + " " + getTimeOfDay(today.getHours());
 
-
-//Function when the user clicks on the next week button
-function nextWeek() { 
-    //Getting the last value in the array
-    var lastWeekFood = food[food.length - 1];
-    var lastWeekWater = water[water.length - 1];
-    var lastWeekDistance = distance[distance.length - 1];
-    
-    //Pushing a new value into the targetted array
-    food.push(lastWeekFood - Math.floor(Math.random() * 5000));
-    water.push(lastWeekWater - Math.floor(Math.random() * 5000));
-    distance.push(lastWeekDistance + Math.floor(Math.random() * 100));
-    
-    //Pushing the new week into the weeks array
-    i = i + 1;
-    weeks.push('week ' + i);
-    
-    //variable to get a random number between 1 and 100
-    var randomSpeed = Math.floor(Math.random() * 1000);
-    speed[0] = randomSpeed;
-                
-                
-    //These charts have been initiated already, but they need to be updated
-    //So the second instance of these charts are here, they get updated every time the user clicks "Next week"
-    //Food Chart
-    var foodChartData = new Chart(foodChart, {
-        type:'line', 
-        data:{
-            labels: weeks,
-            datasets:[{
-                label:'Food',
-                data: food,
-                borderColor: '#B1B1B1'
-            }]
-        },
-        options:{
-            title:{
-                display:true,
-                text:'Food',
-                fontSize:24,
-                fontColor: '#E1676B'
-            },
-                legend:{
-                    display:false,
-                }
-        }
-    });
-
-    //Water Chart
-    var waterChartData = new Chart(waterChart, {
-        type:'line', 
-        data:{
-            labels: weeks,
-            datasets:[{
-                label:'Water',
-                data: water,
-                borderColor: '#B1B1B1'
-            }]
-        },
-        options:{
-            title:{
-                display:true,
-                text:'Water',
-                fontSize:24,
-                fontColor: '#E1676B'
-            },
-            legend:{
-                display:false,
-                }
-        }
-    });
-
-    //Distance Travelled Chart
-    var distanceChartData = new Chart(distanceTravelledChart, {
-        type:'line', 
-        data:{
-            labels: weeks,
-            datasets:[{
-                label:'Distance',
-                data: distance,
-                borderColor: '#B1B1B1'
-            }]
-        },
-        options:{
-            title:{
-                display:true,
-                text:'Distance Travelled',
-                fontSize:24,
-                fontColor: '#E1676B'
-            },
-            legend:{
-                display:false,
+        function addZero(number){
+            if(number < 10){
+                number = "0" + number;
             }
+            return number;
         }
-    });
-
-    //Speed Chart
-    var speedData = new Chart(speedChart, {
-        type:'horizontalBar', 
-        data:{
-            labels: ['speed'],
-            datasets:[{
-                label:'Speed',
-                data: speed,
-                borderColor: '#B1B1B1'
-            }]
-        },
-        options:{
-            title:{
-                display:true,
-                text:'Current Speed in km/h',
-                fontSize:24,
-                fontColor: '#E1676B'
-            },
-            legend:{
-                display:false,
-            },
-            scales:{
-                xAxes: [{
-                stacked:true
-                }],
-                yAxes: [{
-                    stacked:true
-                }]
+    
+        function amOrPm(number){
+            if(number > 12){
+                number = number - 12;
             }
+            return number;
         }
-    });
+    
+        function getTimeOfDay(number){
+            if(number > 12){
+                return "PM";
+            } else {
+                return "AM";
+            }   
+        }
+        
+    }
+    
+    var maanden = new Array('Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December');
+    document.getElementById('date').innerHTML = today.getDate() + " " + maanden[today.getMonth()]  + " " + today.getFullYear();
 }
+
+function switchNotation(){
+    if(i == 1){
+        document.getElementById('switch').innerHTML = "Switch to 24h notation";
+        i = i - 1;
+    } else {
+        document.getElementById('switch').innerHTML = "Switch to 12h notation"
+        i = i + 1;
+    }
+}
+
+function updateBackground() {
+    if(today.getHours() < 6) {
+        document.body.style.backgroundColor = '#002447';
+        document.getElementById('clock').style.color = "#c0c0c0";
+        document.getElementById('date').style.color = "#c0c0c0";
+        document.getElementById('image').src='../images/moon.png'
+        document.getElementById('image').style.marginLeft = '50%';
+    } else if(today.getHours() < 12) {
+        document.body.style.backgroundColor = '#f3d173';
+        document.getElementById('image').src='../images/morningSun.png'
+        document.getElementById('image').style.marginLeft = '-50px';
+        document.getElementById('image').style.marginTop = '400px';
+    } else if(today.getHours() < 18) {
+        document.body.style.backgroundColor = '#87ceeb';
+        document.getElementById('image').src='../images/daySun.png'
+        document.getElementById('image').style.marginLeft = '35px';
+    } else if(today.getHours() < 24) {
+        document.body.style.backgroundColor = '#fd6051';
+        document.getElementById('clock').style.color = "#c0c0c0";
+        document.getElementById('date').style.color = "#c0c0c0";
+        document.getElementById('image').src='../images/eveningSun.png'
+        document.getElementById('image').style.marginLeft = '-200px';
+    }
+}
+
+var clock = document.getElementById('clock');
+var date = document.getElementById('date');
+var button = document.getElementById('switch');
+var image = document.getElementById('image');
+
+clock.classList.add('fadeIn');
+date.classList.add('fadeIn');
+button.classList.add('fadeIn');
+image.classList.add('fadeIn');

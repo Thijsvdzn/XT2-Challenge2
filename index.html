@@ -2,45 +2,32 @@
 <html lang="nl">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Tesla Dashboard</title>
+		<title>Tesla Clock</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://fonts.googleapis.com/css?family=Asap+Condensed" rel="stylesheet" />
 		<link type="text/css" href="styles/main.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+        <script src="scripts/main.js" defer></script>
 	</head>
     
 	<body>
-		<div class="grid-item header">
-            <h1>Tesla Dashboard</h1>
-		</div>
+
         
         <main class="grid-item main">
-            
-	    	<div class="grid-item section1">
-                
-                <canvas id="foodChart"></canvas>
-                
+            <div class="grid-time section1">
+                <figure>
+                    <img id="image" src="images/morningSun.png"/>
+                </figure>
             </div>
-                    
             <div class="grid-item section2">
-                <canvas id="waterChart"></canvas>
+                <h1 id="clock">0:00:00</h1>
             </div>
-            
             <div class="grid-item section3">
-                <canvas id="distanceTravelledChart"></canvas>
-            </div>
-            
-            <div class="grid-item section3">
-                <canvas id="speedChart"></canvas>
+                <h1 id="date">14 Maart 2000</h1>
             </div>
 
         </main>
-        
-	    <footer class="grid-item foot">
-            <button type="button" onclick="nextWeek()">Next week</button>
-		</footer>
-        
-	  <script src="scripts/main.js"></script>
+        <footer class="grid-team footer">
+            <button id="switch" value="Switch to 12h notation" onClick="switchNotation();">Switch to 12h notation</button>
+        </footer>
+	  
 	</body>
 </html>
